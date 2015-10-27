@@ -1,0 +1,29 @@
+= haml :'templates/nav'
+%table#templatedetails.stdtable
+  %tr
+    %td Name:
+    %td= @template.name
+  %tr
+    %td Description:
+    %td= @template.description
+  %tr
+    %td
+      Fields:
+    %td
+      - if @template.fields
+        = tag_to_elements(@template.fields)
+        %a(href="/templates/tags/#{@template.id}") Update
+      - else
+        %p No fields
+        %a(href="/templates/tags/#{@template.id}") Update
+  %tr
+    %td
+      Type:
+    %td
+      = @template.type
+  %tr
+    %td(colspan="2")
+      %textarea(readonly="readonly" class="largearea")= @template.contents
+      %br
+      %textarea(readonly="readonly" class="largearea")= @template.contents_deconfigure
+      %a(href="/templates/edit/#{@template.id}") Edit template

@@ -1,0 +1,41 @@
+- if @embed
+  - divid = "embedform"
+- else
+  - divid = "configform"
+%div(id="#{divid}")
+  %form(action="/schedule" method="POST" id="configureform")
+    %fieldset
+      %legend
+        Configure Test
+      %table
+        %tr
+          %td 
+            %label CRID
+          %td= @crid
+        %tr
+          %td
+            %label Customer
+          %td= @customer
+        %tr
+          %td
+            %label Location
+          %td= @location
+        %tr
+          %td
+            %label Speed
+          %td= @speed
+        - @defaults.each do |element, config|
+          %tr
+            %td
+              %label= config["name"]
+            %td
+              = tag_to_form(element, config["value"], config[:klass])
+      %input(type="hidden" name="crid" value="#{@crid}")
+      %input(type="hidden" name="customer" value="#{@customer}")
+      %input(type="hidden" name="location" value="#{@location}")
+      %input(type="hidden" name="speed" value="#{@speed}")
+      %input(type="hidden" name="form_id" value="#{@form_id}")
+      %input(type="hidden" name="deadline" value="#{@deadline}")
+      - if @embed
+        = input 'hidden', 'embed', 'true'
+      %input(type="submit" id="submitbtn" name="submit")

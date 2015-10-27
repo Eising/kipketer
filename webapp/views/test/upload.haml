@@ -1,0 +1,11 @@
+#configform
+  %h1 Generate report based on external results
+  %form(method="post" enctype="multipart/form-data" action="/test/upload")
+    %input(type="hidden" name="test_id" value="#{@test.id}")
+    %label Select PDF file to upload
+    %br
+    %input(type="file" name="file" accept="application/pdf")
+    %br
+    %input(type="submit" name="submit" value="Upload...")
+
+

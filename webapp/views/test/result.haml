@@ -1,0 +1,20 @@
+#configform
+  %h1 Throughput test
+  %form#testopts
+    - @opts.each do |opt, val|
+      = input("hidden", opt, val)
+    = input("hidden", "tag", @tag)
+  #legendholder
+  #graph
+    %h3 Collecting data. Please wait.
+  %span#abortbtn
+    %button#streamstop
+      Abort test
+  %span#nextbtn
+    %a(href="/test/setup?remote=#{@opts[:remote]}&test_id=#{@opts[:test_id]}&next=#{@opts[:next]}&last_test=#{@opts[:last_test]}")
+      %button
+        Next
+  .smalltext
+    If the test stops, and the Next button doesn't appear. Please go back, and retry the test. Try lowing the number of TCP streams if the problem reappears.
+    %br
+    %a(href="/test/setup?remote=#{@opts[:remote]}&test_id=#{@opts[:test_id]}&next=#{@opts[:next]}&last_test=#{@opts[:last_test]}") Press here to continue if the test stops

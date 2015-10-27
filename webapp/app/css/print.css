@@ -1,0 +1,50 @@
+body {
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+}
+h1, h2, h3, h4 {
+    color: #525252;
+}
+
+p, body, li, th, td {
+    font-size: 9pt;
+}
+
+label {
+    width: 200px;
+    float: left;
+}
+
+#logo {
+    float: right;
+}
+#efgraph {
+    width: 600px;
+    height: 300px;
+}
+#begraph {
+    width: 600px;
+    height: 300px;
+}
+
+.keeptogether {
+    page-break-inside: avoid;
+}
+
+#escalationtable th {
+    padding: 5px;
+    text-align: left;
+    background-color: #b0b0b0;
+    color: #fff;
+}
+
+#escalationtable td {
+    font-size: 8pt;
+    padding: 5px;
+    background-color: #f8f8f8;
+}
+
+.fail {
+    font-size: 28pt;
+    color: red;
+    font-weight: bold;
+}

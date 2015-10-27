@@ -1,0 +1,21 @@
+%center
+  %h1 Migrate from the old system
+%table(class="stdtable smallsize")
+  %tr
+    %th CRID
+    %th Customer
+    %th Location
+    %th Added
+    %th Deadline
+    %th Migrate
+  - @requests.each do |req|
+    %tr
+      %td= req[:crid]
+      %td= req[:customer]
+      %td= req[:location]
+      %td= req[:timestamp].strftime("%d/%m/%Y")
+      %td= req[:deadline].strftime("%d/%m/%Y")
+      %td
+        %a(href="/admin/migrate/#{req[:id]}")
+          = img '/images/run.png'
+

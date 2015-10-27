@@ -1,0 +1,64 @@
+#configform
+  %span.error= @error
+  %h1 Run #{@measure.upcase} test
+  %form(action="/test/result" method="POST" id="testform")
+    .helptext
+      %p Select the test type. TCP gives better graphs, but UDP has less protocol overhead.
+    .formpart
+      %label Protocol
+      %br
+      %input(type="radio" name="protocol" value="tcp" class="nowidth protocheck" checked="checked" id="tcpcheckbox") TCP
+      %br
+      %input(type="radio" name="protocol" value="udp" class="nowidth protocheck" id="udpcheckbox") UDP
+    .clear
+      #udp
+        .helptext
+          %p Enter the bandwidth to be tested (auto-filled from test)
+        .formpart
+          %label Speed
+          %br
+          %input(type="text" name="speed" value="#{@test.speed}")
+        .clear
+      #tcp
+        .helptext
+          %p Enter the number of parallel tests streams to run, or use the default.
+        .formpart
+          %label Concurrent test sessions
+          %br
+          %input(type="text" name="sessions" value="#{@config[:default_sessions]}")
+        .clear
+        %a(href="#" id="showtcpadv")
+          = img '/images/arrow16x16.png'
+          Advanced TCP Options
+        #tcpadv
+          .helptext
+            %p Enter the desired TCP Window size or use the default.
+          .formpart
+            %label TCP Window Size
+            %br
+            %input(type="text" name="tcpwindowsize" value="#{@config[:tcpwindowsize]}")
+          .clear
+          .helptext
+            %p Enter the desired TCP block size, or use the default.
+          .formpart
+            %label TCP Block Size
+            %br
+            %input(type="text" name="blocksize" value="#{@config[:blocksize]}")
+          .clear
+
+      .formpart
+        = input 'hidden', 'next', @measurements.join(",")
+        %input(type="hidden" name="remote" value="#{@remote}")
+        %input(type="hidden" name="test_id" value="#{@test.id}")
+        = input 'hidden', 'testtype', @testtype
+        = input 'hidden', 'last_test', @measure 
+        %input(type="submit" name="submitknap" value="Start")
+        %a(href="/test/deprovision/#{@test.id}?remote=#{@remote}") Cancel and deprovision
+      .clear
+
+     
+
+
+
+
+

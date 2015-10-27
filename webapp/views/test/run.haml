@@ -1,0 +1,74 @@
+#configform
+  %form(action="/test/config" method="POST" id="configureform")
+    %table#templatedetails.stdtable
+      %tr
+        %td(colspan="2")
+          %b Data
+      %tr
+        %td CRID
+        %td= @test.crid
+      %tr
+        %td Customer
+        %td= @test.customer
+      %tr
+        %td Location
+        %td= @test.location
+      %tr
+        %td Speed
+        %td= @test.speed
+      %tr
+        %td(colspan="2")
+          %b Parameters
+      - @template_fields.each do |k,v|
+        %tr
+          %td= k
+          %td= v
+    .helptext
+      %p Select the test pair from this list. For L3POI, select the pairs marked as L3POI.
+    .formpart
+      %input(type="hidden" name="test_id" value="#{@test_id}")
+      %select(name="remote" class="required")
+        %option(value="") Choose server pair
+        - @pairs.each do |pair|
+          - if pair[:l3]
+            %option(value="#{pair["remote"]}") #{pair["name"]} (L3POI)
+          - else
+            %option(value="#{pair["remote"]}") #{pair["name"]}
+      %br
+    .clear
+    .helptext
+      %p
+        %b RTT
+        %br
+        Measures one-way delay, jitter and loss between the endpoints
+      %p
+        %b Best Effort
+        %br
+        A 10 minute traffic test of best effort traffic
+      %p
+        %b VoIP/EF
+        %br
+        A 60 seconds traffic test marked witch DSCP EF
+    .formpart
+      %label Tests to run
+      %br
+      %input(type="checkbox" name="tests[]" value="rtt" checked="checked" class="nowidth") RTT
+      %br
+      %input(type="checkbox" name="tests[]" value="be" checked="checked" class="nowidth") Best Effort
+      %br
+      %input(type="checkbox" name="tests[]" value="ef" class="nowidth") VoIP/EF
+      %br
+    .clear
+    .helptext
+      %a(href="/test/upload/#{@test_id}")
+        %button(type="button") Upload external test report
+    .formpart
+      %input(type="submit" value="Next")
+    .clear
+    .formpart
+      %br
+      %a(href="/schedule/delete/#{@test_id}" class="confirmation")
+        Delete
+    .clear
+  
+

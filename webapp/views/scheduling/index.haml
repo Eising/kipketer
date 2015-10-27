@@ -1,0 +1,27 @@
+#searchbar
+  %form(action="/" method="get")
+    %label Search for CRID
+    %input(type="text" name="crid")
+    %input(type="submit" value="Search")
+%table.stdtable
+  %tr
+    %th CRID
+    %th Customer
+    %th Location
+    %th Creation Date
+    %th Deadline
+    %th View/Run
+  - @tests.each do |test|
+    %tr
+      %td= test.crid
+      %td= test.customer
+      %td= test.location
+      %td= test.timestamp.strftime('%d/%m/%Y')
+      %td
+        %span= test.deadline.strftime('%d/%m/%Y')
+        - if test.deadline < Date.today
+          = img '/images/warning.png'
+      %td
+        %a(href="/test/run/#{test.id}")
+          = img '/images/run.png'
+= will_paginate @tests          

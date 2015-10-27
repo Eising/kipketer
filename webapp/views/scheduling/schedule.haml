@@ -1,0 +1,47 @@
+- if @embed
+  - divid = "embedform"
+- else
+  - divid = "scheduleform"
+%div(id="#{divid}")
+  %h1 Schedule new test
+  %form(action="/schedule/config" method="POST" id="configureform")
+    .helptext
+      %p Enter the details for this circuit, and choose the configuration form for it.
+    .formpart
+      %label CRID
+      %br
+      %input(type="text" name="bo_CRID" class="validatecrid required" value="#{@crid}")
+      %br
+      %label Customer
+      %br
+      %input(type="text" name="bo_FullCompanyName" class="required" value="#{@customer}")
+      %br
+      %label Location
+      %br
+      %input(type="text" name="bo_LocationAFullName" class="required" value="#{@location}")
+      %br
+      %label Speed
+      %br
+      %input(type="text" name="bo_CPE.CPEConnectionSpeed" class="validatespeed required" value="#{@speed}")
+    .clear
+    .helptext
+      #datecontainer
+    .formpart
+      %br
+      %label Deadline
+      %br
+      %input(type="text" name="BO_ContractDeliveryDate" class="required" id="datepicker")
+      %br
+      %label Configuration
+      %br
+      %select(name="form_id" class="required")
+        %option(value="") Select form
+        - @forms.each do |form|
+          %option(value="#{form[:id]}") #{form[:name]}
+      %br
+    .clear
+    - if @embed
+      = input 'hidden', 'embed', 'true'
+    %input(type="submit" id="submitbtn" name="submit")
+
+

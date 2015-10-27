@@ -1,0 +1,13 @@
+#configform
+  = input 'hidden', 'test_id', @test_id
+  = input 'hidden', 'remote', @remote
+  #wait
+    %h3 Please wait at least 30 seconds for the test results
+    %center
+      = img '/images/loading.gif'
+  #results
+  %span#next
+    %a(href="/test/setup?test_id=#{@test_id}&remote=#{@remote}&next=#{@measurements.join(",")}&last_test=#{@measure}")
+      %button
+        Next
+

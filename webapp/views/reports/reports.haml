@@ -1,0 +1,24 @@
+#searchbar
+  %form(action="/reports" method="get")
+    %label Search for CRID
+    %input(type="text" name="crid")
+    %input(type="submit" value="Search")
+%table.stdtable
+  %tr
+    %th CRID
+    %th Customer
+    %th Location
+    %th Generate PDF
+    %th Configure Report
+  - @tests.each do |test|
+    %tr
+      %td= test.crid
+      %td= test.customer
+      %td= test.location
+      %td
+        %a(href="/reports/auto/#{test.id}.pdf")
+          = img '/images/pdf.png'
+      %td
+        %a(href="/reports/configure/#{test.id}")
+          = img '/images/run.png'
+= will_paginate @tests

@@ -1,0 +1,19 @@
+= haml :'admin/nav'
+#configform
+  %h1 Deleted tests
+  %table.stdtable
+    %tr
+      %th ID
+      %th CRID
+      %th Customer
+      %th Location
+      %th Action
+    - @tests.each do |test|
+      %tr
+        %td= test.id
+        %td= test.crid
+        %td= test.customer
+        %td= test.location
+        %td
+          %a(href="/admin/scheduling/undelete/#{test.id}" class="confirmation")
+            Undelete

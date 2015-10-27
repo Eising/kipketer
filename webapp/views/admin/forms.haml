@@ -1,0 +1,18 @@
+= haml :'admin/nav'
+#configform
+  %h1 Deleted forms
+  %table.stdtable
+    %tr
+      %th ID
+      %th Name
+      %th Action
+    - @forms.each do |form|
+      %tr
+        %td= form.id
+        %td= form.name
+        %td
+          %a(href="/admin/forms/undelete/#{form.id}" class="confirmation")
+            Undelete
+
+
+      

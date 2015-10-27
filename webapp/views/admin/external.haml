@@ -1,0 +1,19 @@
+= haml :'admin/nav'
+#configform
+  %h1 External reports
+  %table.stdtable
+    %tr
+      %th ID
+      %th Filename
+      %th Associated CRID
+      %th Action
+    - @results.each do |result|
+      - res = JSON.parse(result.results)
+      %tr
+        %td= result.id
+        %td= res["filename"]
+        %td= result.test.crid
+        %td
+          %a(href="/admin/external/delete/#{result.id}" class="confirmation")
+            Delete
+

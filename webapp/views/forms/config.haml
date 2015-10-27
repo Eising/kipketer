@@ -1,0 +1,29 @@
+= haml :'forms/nav'
+#configform
+  - if @update
+    %h1 Update Form
+  - else
+    %h1 Add Form
+  .helptext
+    Set default values for fields. Leave blank for no default value. Write a proper name for the form field also.
+  .clear
+  %form(action="/forms/add" method="POST" id="formformelement")
+    .formpart
+      - @tags.each do |tag|
+        %h3 #{tag}
+        %label name
+        %br
+        %input(type="text" name="name.#{tag}" class="required" value="#{@defaults[tag]["name"] rescue ""}")
+        %br
+        %label default value
+        %br
+        %input(type="text" name="tag.#{tag}" value="#{@defaults[tag]["value"] rescue ""}")
+    .clear
+    %input(type="hidden" name="cpe_template_id" value="#{@cpe_template_id}")
+    %input(type="hidden" name="backbone_template_id" value="#{@backbone_template_id}")
+    %input(type="hidden" name="name" value="#{@name}")
+    - if @update
+      %input(type="hidden" name="form_id" value="#{@form_id}")
+    %input(type="submit" id="submitbtn" name="submit")
+        
+

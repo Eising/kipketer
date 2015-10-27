@@ -1,0 +1,22 @@
+= haml :'forms/nav'
+#composeform
+  %h1 Add new form
+  %form(action="/forms/config" method="POST" id="composeformelement")
+    %label Name
+    %br
+    .formpart
+      %input(type="text" id="formname" name="name")
+      %br
+      %label Backbone Template
+      %br
+      %select(name="backbone_template_id" id="backbone_selector")
+        - @bb_templates.each do |template|
+          %option(value="#{template[:id]}") #{template[:name]}
+      %br
+      %label CPE Template
+      %select(name="cpe_template_id" id="cpe_selector")
+        - @cpe_templates.each do |template|
+          %option(value="#{template[:id]}") #{template[:name]}
+      %br
+    .clear
+    %input(type="submit" id="submitbtn" name="submit")

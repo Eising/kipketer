@@ -1,0 +1,15 @@
+= haml :'admin/nav'
+#configform
+  %h1 Deleted templates
+  %table.stdtable
+    %tr
+      %th ID
+      %th Name
+      %th Action
+    - @templates.each do |template|
+      %tr
+        %td= template.id
+        %td= template.name
+        %td
+          %a(href="/admin/templates/undelete/#{template.id}" class="confirmation")
+            Undelete

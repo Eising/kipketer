@@ -1,0 +1,15 @@
+#configform
+  %h1 Configuration
+  - if @bbnode
+    %h2 Backbone (#{@bbnode})
+  - else
+    %h2 Backbone
+  %textarea(class="largearea" readonly="readonly")= @backbone_config
+  - if @mgmtcpe
+    %h2 CPE (#{@mgmtcpe})
+  - else
+    %h2 CPE
+  %textarea(class="largearea" readonly="readonly")=  @cpe_config
+  %a(href="/test/setup?remote=#{@remote}&test_id=#{@test_id}&next=#{@measurements.join(',')}")
+    %button
+      Run test

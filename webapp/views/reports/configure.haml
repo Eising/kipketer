@@ -1,0 +1,82 @@
+- if @backbone_config
+  %div(class="overlay" id="overlay")
+    .wrapper
+      %h1 Test done!
+      %h2 Please deconfigure the test circuit
+      %h3 Backbone config
+      %textarea(class="largearea" readonly="readonly")= @backbone_config
+      %h3 CPE config
+      %textarea(class="largearea" readonly="readonly")= @cpe_config
+      %a(href="#" class="close")
+        %button Done
+  = input 'hidden', 'showoverlay', 'true'
+- else
+  = input 'hidden', 'showoverlay', 'false'
+#configform
+  %h1 Configure Report
+  %label CRID
+  %br
+  = @test.crid
+  %br
+  %label Customer
+  %br
+  = @test.customer
+  %br
+  %label Location
+  %br
+  = @test.location
+  %br
+  - if @test.test_results_dataset.where(:test_type => "external").count > 0
+    %h2 Merge with external report
+    %form(action="/reports/merge" method="POST")
+      %label Select report to merge with
+      %br
+      %select(name="result_id")
+        - @test.test_results_dataset.where(:test_type => "external").all.each do |test|
+          - res = JSON.parse(test.results)
+          %option(value="#{test.id}")
+            = res["filename"]
+
+      %br
+      %label Mark test as Ready for Service
+      %input(type="checkbox" name="delete" value="true" checked="checked" class="nowidth")
+      %br
+      %input(type="submit" value="Merge reports")
+  - else
+    %form(action="/reports/view.pdf" method="POST" id="reportform")
+      %p Select the tests you want to include in your report.
+      - if @test.test_results_dataset.where(:test_type => "rtt").count > 0
+        %label RTT Test
+        %br
+        %select(name="rtt_test_id" id="rtt_test" class="required")
+          %option(value="") Select test result
+          - @test.test_results_dataset.where(:test_type => "rtt").exclude(:results => nil).order(Sequel.desc(:id)).all.each do |test|
+            %option(value="#{test.id}")
+              = test.timestamp.strftime("%d/%m/%Y %H:%M:%S")
+        %br
+      - if @test.test_results_dataset.where(:test_type => "be").exclude(:image => nil).count > 0
+        %label Best Effort Throughput
+        %br
+        %select(name="be_test_id" id="be_test" class="required")
+          %option(value="") Select test result
+          - @test.test_results_dataset.where(:test_type => "be").exclude(:image => nil).order(Sequel.desc(:id)).all.each do |test|
+            %option(value="#{test.id}")
+              = test.timestamp.strftime("%d/%m/%Y %H:%M:%S")
+        %br
+      - if @test.test_results_dataset.where(:test_type => "ef").count > 0
+        %label EF/VoIP Throughput
+        %br
+        %select(name="ef_test_id" id="ef_test" class="required")
+          %option(value="") Select test result
+          - @test.test_results_dataset.where(:test_type => "ef").exclude(:image => nil).order(Sequel.desc(:id)).all.each do |test|
+            %option(value="#{test.id}")
+              = test.timestamp.strftime("%d/%m/%Y %H:%M:%S")
+        %br
+      %label Mark test as Ready for Service
+      %input(type="checkbox" name="delete" value="true" checked="checked" class="nowidth")
+      %br
+      %p Graph preview
+      #smallgraph
+      = input 'hidden', 'test_id', @test.id
+      %br
+      = input 'submit', 'submitbutton', 'Generate Report'

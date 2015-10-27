@@ -1,0 +1,77 @@
+!!!
+%html
+  %head
+    %title Report - #{@test.crid} - #{@test.customer} - #{@test.location}
+    =css :print, :media => "print"
+    %body
+      #logo
+      %h1 Test Report
+      %label Customer:
+      = @test.customer
+      %br
+      %label Circuit Reference:
+      = @test.crid
+      %br
+      %label Location:
+      = @test.location
+      %br
+      %label Speed:
+      #{@test.speed} Mbit
+      %h2 Overall test setup
+      The circuit has been tested using two test servers, and a loop on the circuit demarcation equipment.
+      %br
+      = img '/images/test-setup.png'
+      - if @rtt_test
+        %h2 Response time
+        %p The response time have been tested using unidirectional measurements, from test server A to B and the reverse.
+        %h3 Response time A-B
+        %label Minimum delay:
+        #{@rtt["local"]["min"]} ms
+        %br
+        %label Highest delay:
+        #{@rtt["local"]["max"]} ms
+        %br
+        %label Average delay:
+        #{@rtt["local"]["median"]} ms
+        %br
+        %label Jitter:
+        #{@rtt["local"]["jitter"]} ms
+        %br
+        %label Packet loss:
+        #{@rtt["local"]["loss"]}
+        %h3 Response time B-A
+        %label Minimum delay:
+        #{@rtt["remote"]["min"]} ms
+        %br
+        %label Highest delay:
+        #{@rtt["remote"]["max"]} ms
+        %br
+        %label Average delay:
+        #{@rtt["remote"]["median"]} ms
+        %br
+        %label Jitter:
+        #{@rtt["remote"]["jitter"]} ms
+        %br
+        %label Packet loss:
+        #{@rtt["remote"]["loss"]}
+        %br
+      - if @be_test
+        #betest.keeptogether
+          = input 'hidden', 'be_test', 'yes'
+          = input 'hidden', 'be_test_id', @be_test_id
+          %h2 Best-Effort throughput measurement
+          %p This measurement has been done using the #{@be_result.protocol} protocol from Testserver A to Testserver B over 10 minutes.
+          %label Average: 
+          #{@be[:average]} Mbit/s
+          %br
+          %img(src="/test/viewimage/#{@be_test_id}")
+      - if @ef_test
+        #eftest.keeptogether
+          = input 'hidden', 'ef_test', 'yes'
+          = input 'hidden', 'ef_test_id', @ef_test_id
+          %h2 VoIP/EF Throughput measurement
+          %p This measurement has been done using the  #{@ef_result.protocol} protocol from Testserver A to Testserver B over 60 seconds. The traffic has been marked as DSCP EF.
+          %label Average: 
+          #{@ef[:average]} Mbit/s
+          %br
+          %img(src="/test/viewimage/#{@ef_test_id}")

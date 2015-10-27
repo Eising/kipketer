@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title Kipketer :: #{@pagetitle}
+    - if @embed
+      =css :embed, :media => 'screen'
+    - else
+      =css :application, :media => 'screen'
+    =css :print, :media => 'print'
+    =js :application
+    %script{:type => "text/javascript",
+      :src => "/localjs/#{@pagename}.js"}
+  %body
+    =styled_flash
+    - unless @embed
+      #header
+        #logotext
+         KIPKETER LINE TESTING
+        #nav
+          %ul
+            %li 
+              %a(href="/") View Scheduled Tests
+            %li 
+              %a(href="/schedule") Schedule New Test
+            %li
+              %a(href="/reports") Generate Report
+            %li
+              %a(href="/templates") Manage Templates
+            %li
+              %a(href="/forms") Manage Forms
+            %li
+              %a(href="/admin") Admininistration
+    #body
+      =yield

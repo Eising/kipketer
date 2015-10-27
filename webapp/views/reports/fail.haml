@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Report - #{@test.crid} - #{@test.customer} - #{@test.location}
+    =css :print, :media => "print"
+    %body
+      #logo
+      %h1 Report - Test Failed
+      %label Customer:
+      = @test.customer
+      %br
+      %label Circuit Reference:
+      = @test.crid
+      %br
+      %label Location:
+      = @test.location
+      %br
+      %label Speed:
+      #{@test.speed} Mbit
+      %h2 The test failed. Please rerun

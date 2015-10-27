@@ -1,0 +1,25 @@
+namespace :db do
+  desc "Run migrations"
+  task :migrate, [:version] do |t, args|
+    require "sequel"
+    require "yaml"
+    Sequel.extension :migration
+    config = YAML.load_file("etc/config.yml")
+    if ENV['RACK_ENV'] == "test"
+        dbstring = "sqlite://db/test.db"
+    elsif ENV['RACK_ENV'] == "development"
+        dbstring = "sqlite://db/development.db"
+    else
+        dbstring = "mysql2://#{config["production"]["dbuser"]}:#{config["production"]["dbpass"]}@#{config["production"]["dbhost"]}/#{config["production"]["db"]}"
+    end
+    db = Sequel.connect(dbstring)
+    if args[:version]
+      puts "Migrating to version #{args[:version]}"
+      Sequel::Migrator.run(db, "db/migrations", target: args[:version].to_i)
+    else
+      puts "Migrating to latest"
+      Sequel::Migrator.run(db, "db/migrations")
+    end
+  end
+end
+

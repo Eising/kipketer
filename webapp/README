@@ -1,0 +1,14 @@
+Speedtest
+
+This is the rewrite of the speedtest system, designed for Nianet RFS tests
+
+Requirements
+
+Requires ruby version 1.9.3 or newer, rubygems and bundler. Run bundle install
+after every update.
+
+Runs on Puma and can be proxied by Nginx or run standalone.
+
+Remote server must be owampd and thrulay-ng
+
+Written by Allan Eising

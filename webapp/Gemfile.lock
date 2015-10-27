@@ -1,0 +1,137 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    backports (3.6.3)
+    builder (3.2.2)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    combine_pdf (0.1.15)
+      ruby-rc4 (>= 0.1.5)
+    cucumber (1.3.17)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 2.12)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.1)
+    cucumber-sinatra (0.5.0)
+      templater (>= 1.0.0)
+    data_uri (0.1.0)
+    diff-lcs (1.2.5)
+    extlib (0.9.16)
+    gherkin (2.12.2)
+      multi_json (~> 1.3)
+    haml (4.0.5)
+      tilt
+    highline (1.6.21)
+    jsmin (1.0.1)
+    json (1.8.1)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
+    mime-types (2.4.3)
+    mini_portile (0.6.0)
+    multi_json (1.10.1)
+    multi_test (0.1.1)
+    mustache (0.99.6)
+    mysql (2.9.1)
+    mysql2 (0.3.16)
+    netaddr (1.5.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
+    pdfkit (0.6.2)
+    puma (2.9.1)
+      rack (>= 1.1, < 2.0)
+    rack (1.5.2)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
+    rack-protection (1.5.3)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rack-utf8_sanitizer (1.2.3)
+      rack (~> 1.0)
+    redcarpet (3.2.0)
+    rspec (3.1.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+    rspec-core (3.1.7)
+      rspec-support (~> 3.1.0)
+    rspec-expectations (3.1.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.1.0)
+    rspec-mocks (3.1.3)
+      rspec-support (~> 3.1.0)
+    rspec-support (3.1.2)
+    ruby-rc4 (0.1.5)
+    sequel (4.15.0)
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    sinatra-assetpack (0.3.3)
+      jsmin
+      rack-test
+      sinatra
+      tilt (>= 1.3.0, < 2.0)
+    sinatra-contrib (1.4.2)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (~> 1.3)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
+    sinatra-redirect-with-flash (0.2.1)
+      sinatra (>= 1.0.0)
+    sqlite3 (1.3.10)
+    templater (1.0.0)
+      diff-lcs (>= 1.1.2)
+      extlib (>= 0.9.5)
+      highline (>= 1.4.0)
+    tilt (1.4.1)
+    will_paginate (3.0.7)
+    wkhtmltopdf-binary (0.9.9.3)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
+    yard (0.8.7.6)
+    yui-compressor (0.12.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  capybara
+  combine_pdf
+  cucumber
+  cucumber-sinatra
+  data_uri
+  haml
+  json
+  mail
+  mustache
+  mysql
+  mysql2 (~> 0.3.16)
+  netaddr
+  nokogiri
+  pdfkit
+  puma
+  rack-contrib
+  rack-utf8_sanitizer
+  redcarpet
+  rspec
+  sequel
+  sinatra
+  sinatra-assetpack
+  sinatra-contrib
+  sinatra-flash
+  sinatra-redirect-with-flash
+  sqlite3
+  will_paginate (~> 3.0.6)
+  wkhtmltopdf-binary
+  yard
+  yui-compressor

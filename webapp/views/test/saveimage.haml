@@ -1,0 +1,12 @@
+#configform
+  %h1 Save image
+  = input 'hidden', 'graphid', @result.id
+  #graph
+  %button#savebtn
+  %span#nextbtn
+    %a(href="/test/setup?remote=#{@opts[:remote]}&test_id=#{@opts[:test_id]}&next=#{@opts[:next]}")
+      %button Next
+    
+  
+
+

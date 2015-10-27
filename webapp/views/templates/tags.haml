@@ -1,0 +1,23 @@
+= haml :'templates/nav'
+#configform
+  %h1 Setup tags
+  .helptext
+    Select the validation types of the tags in your template
+  %form(action="/templates/tags" method="POST" id="tagsformelement")
+    %input(type="hidden" name="templateid" value="#{@templateid}")
+    - @tags.each do |tag|
+      .formpart
+        %h2= tag
+        %br
+        %select(name="tag.#{tag}" id="tag_#{tag}" class="tagselect required")
+          %option(value="") Select validator
+          - @validators.each do |validator,detail|
+            %option(value="#{validator}") #{detail[:description]}
+        %br
+    .clear
+    %input(type="submit" id="submitbtn" name="submit")
+      
+    
+
+
+

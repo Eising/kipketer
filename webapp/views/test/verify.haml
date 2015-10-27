@@ -1,0 +1,18 @@
+#configform
+  %h1 Verifying connectivity
+  = input 'hidden', 'test_id', @test_id
+  = input 'hidden', 'remote', @remote
+  #wait
+    Testing connectivity
+    %br
+    = img '/images/loading.gif'
+  #results
+  %a(href="/test/setup?test_id=#{@test_id}&remote=#{@remote}&next=#{@measurements.join(",")}")
+    %button#nextbtn
+      Next
+  %button#retrybtn
+    Retry
+  %br
+  %a(href="/test/deprovision/#{@test_id}?remote=#{@remote}") Cancel and deprovision
+
+    

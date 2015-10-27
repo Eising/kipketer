@@ -1,0 +1,47 @@
+- if @embed
+  - divid = "embedform"
+- else
+  - divid = "scheduleform"
+%div(id="#{divid}")
+  %form(action="/schedule/config" method="POST" id="configureform")
+    %fieldset
+      %legend 
+        Schedule new test
+      %table
+        %tr
+          %td 
+            %label CRID
+          %td
+            %input(type="text" name="bo_CRID" class="validatecrid required" value="#{@crid}")
+        %tr
+          %td
+            %label Customer
+          %td
+            %input(type="text" name="bo_FullCompanyName" class="required" value="#{@customer}")
+        %tr
+          %td
+            %label Location
+          %td
+            %input(type="text" name="bo_LocationAFullName" class="required" value="#{@location}")
+        %tr
+          %td
+            %label Speed
+          %td
+            %input(type="text" name="bo_CPE.CPEConnectionSpeed" class="validatespeed required" value="#{@speed}")
+        %tr
+          %td
+            %label Deadline
+          %td
+            %input(type="text" name="BO_ContractDeliveryDate" class="required" id="datepicker")
+        %tr
+          %td
+            %label Configuration
+          %td
+            %select(name="form_id" class="required")
+              %option(value="") Select form
+              - @forms.each do |form|
+                %option(value="#{form[:id]}") #{form[:name]}
+      - if @embed
+        = input 'hidden', 'embed', 'true'
+      %input(type="submit" id="submitbtn" name="submit")
+      #datecontainer

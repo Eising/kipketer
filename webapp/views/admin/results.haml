@@ -1,0 +1,20 @@
+= haml :'admin/nav'
+%center
+  %h1 Manage test results
+%table.stdtable
+  %tr
+    %th CRID
+    %th Customer
+    %th Location
+    %th No. of results
+    %th Action
+  - @tests.each do |test|
+    %tr
+      %td= test.crid
+      %td= test.customer
+      %td= test.location
+      %td= test.test_results_dataset.count
+      %td 
+        %a(href="/admin/results/purge/#{test.id}" class="confirmation")
+          Purge
+

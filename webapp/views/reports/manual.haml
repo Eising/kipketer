@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Report - #{@test.crid} - #{@test.customer} - #{@test.location}
+    =css :print, :media => "print"
+    %body
+      #logo
+      %h1 Report
+      %label Customer:
+      = @test.customer
+      %br
+      %label Circuit Reference:
+      = @test.crid
+      %br
+      %label Location:
+      = @test.location
+      %br
+      %label Speed:
+      #{@test.speed} Mbit
+      %h2 Test setup
+      This circuit has been tested externally. This report includes the external measurement report.
+
+

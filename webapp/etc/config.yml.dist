@@ -1,0 +1,225 @@
+---
+production:
+    dbuser: speedtest
+    dbhost: localhost
+    db: speedtest
+    dbpass: MyDatabasePassword
+    binaries:
+        thrulay: /usr/local/bin/thrulay
+        owping: /usr/bin/owping
+    validators:
+        vlan:
+            :description: Validates Vlan
+            :class: validatevlan
+        net:
+            :description: Validates subnets
+            :class: validatenet
+        crid:
+            :description: Validates CRID-numbers
+            :class: validatecrid
+        ip:
+            :description: Validates IP addresses
+            :class: validateip
+        interface:
+            :description: Validates interfaces
+            :class: validateinterface
+        asn:
+            :description: Validates AS-numbers
+            :class: validateasn
+        none:
+            :description: No validation
+    testoptions:
+      default_sessions: 10
+      tcpwindowsize: 4194304
+      blocksize: 8192
+      duration:
+          be: 600
+          ef: 60
+    pairs: 
+    - remote: 198.19.0.2
+      name: 198.18.0.2 - 198.19.0.2
+      local: 198.18.0.2
+      client: 198.18.1.0/30
+      bb: 198.18.1.1
+      cpe: 198.18.1.2
+      dslbb: 198.19.1.1
+      dslcpe: 198.19.1.2
+    - remote: 198.19.0.3
+      name: 198.18.0.3 - 198.19.0.3
+      local: 198.18.0.3
+      client: 198.18.1.4/30
+      bb: 198.18.1.5
+      cpe: 198.18.1.6
+      dslbb: 198.19.1.5
+      dslcpe: 198.19.1.6
+    - remote: 198.19.0.4
+      name: 198.18.0.4 - 198.19.0.4
+      local: 198.18.0.4
+      client: 198.18.1.8/30
+      bb: 198.18.1.9
+      cpe: 198.18.1.10
+      dslbb: 198.19.1.9
+      dslcpe: 198.19.1.10
+    - remote: 198.19.0.5
+      name: 198.18.0.5 - 198.19.0.5
+      local: 198.18.0.5
+      client: 198.18.1.12/30
+      bb: 198.18.1.13
+      cpe: 198.18.1.14
+      dslbb: 198.19.1.13
+      dslcpe: 198.19.1.14
+    - remote: 198.19.0.6
+      name: 198.18.0.6 - 198.19.0.6
+      local: 198.18.0.6
+      client: 198.18.1.16/30
+      bb: 198.18.1.17
+      cpe: 198.18.1.18
+      dslbb: 198.19.1.17
+      dslcpe: 198.19.1.18
+    - remote: 198.19.0.7
+      name: 198.18.0.7 - 198.19.0.7
+      local: 198.18.0.7
+      client: 198.18.1.20/30
+      bb: 198.18.1.21
+      cpe: 198.18.1.22
+      dslbb: 198.19.1.21
+      dslcpe: 198.19.1.22
+    - remote: 198.19.0.8
+      name: 198.18.0.8 - 198.19.0.8
+      local: 198.18.0.8
+      client: 198.18.1.24/30
+      bb: 198.18.1.25
+      cpe: 198.18.1.26
+      dslbb: 198.19.1.25
+      dslcpe: 198.19.1.26
+    - remote: 198.19.0.9
+      name: 198.18.0.9 - 198.19.0.9
+      local: 198.18.0.9
+      client: 198.18.1.28/30
+      bb: 198.18.1.29
+      cpe: 198.18.1.30
+      dslbb: 198.19.1.29
+      dslcpe: 198.19.1.30
+    - remote: 198.19.0.10
+      name: 198.18.0.10 - 198.19.0.10
+      local: 198.18.0.10
+      client: 198.18.1.32/30
+      bb: 198.18.1.33
+      cpe: 198.18.1.34
+      dslbb: 198.19.1.33
+      dslcpe: 198.19.1.34
+    - remote: 198.19.0.11
+      name: 198.18.0.11 - 198.19.0.11
+      local: 198.18.0.11
+      client: 198.18.1.36/30
+      bb: 198.18.1.37
+      cpe: 198.18.1.38
+      dslbb: 198.19.1.37
+      dslcpe: 198.19.1.38
+    - remote: 198.19.0.12
+      name: 198.18.0.12 - 198.19.0.12
+      local: 198.18.0.12
+      client: 198.18.1.40/30
+      bb: 198.18.1.41
+      cpe: 198.18.1.42
+      dslbb: 198.19.1.41
+      dslcpe: 198.19.1.42
+    - remote: 198.19.0.13
+      name: 198.18.0.13 - 198.19.0.13
+      local: 198.18.0.13
+      client: 198.18.1.44/30
+      bb: 198.18.1.45
+      cpe: 198.18.1.46
+      dslbb: 198.19.1.45
+      dslcpe: 198.19.1.46
+    - remote: 198.19.0.14
+      name: 198.18.0.14 - 198.19.0.14
+      local: 198.18.0.14
+      client: 198.18.1.48/30
+      bb: 198.18.1.49
+      cpe: 198.18.1.50
+      dslbb: 198.19.1.49
+      dslcpe: 198.19.1.50
+    - remote: 198.19.0.18
+      local: 198.18.0.18
+      netlocal: 198.18.0.16
+      netremote: 198.19.0.16
+      name: 198.18.0.18 - 198.19.0.18 (L3POI)
+      client: 198.18.1.52/30
+      l3: true
+    - remote: 198.19.0.26
+      local: 198.18.0.26
+      netlocal: 198.18.0.24
+      netremote: 198.19.0.24
+      name: 198.18.0.26 - 198.19.0.26 (L3POI)
+      client: 198.18.1.56/30
+      l3: true
+    - remote: 198.19.0.34
+      local: 198.18.0.34
+      netlocal: 198.18.0.32
+      netremote: 198.19.0.32
+      name: 198.18.0.34 - 198.19.0.34 (L3POI)
+      client: 198.18.1.60/30
+      l3: true
+    - remote: 198.19.0.42
+      local: 198.18.0.42
+      netlocal: 198.18.0.40
+      netremote: 198.19.0.40
+      name: 198.18.0.42 - 198.19.0.42 (L3POI)
+      client: 198.18.1.64/30
+      l3: true
+development: &id0001
+    dbuser: speedtest
+    dbhost: localhost
+    db: speedtest
+    dbpass: MyDatabasePassword
+    binaries:
+        thrulay: /usr/local/bin/thrulay
+        owping: /usr/local/bin/owping
+    validators:
+        vlan:
+            :description: Validates Vlan
+            :class: validatevlan
+        net:
+            :description: Validates subnets
+            :class: validatenet
+        crid:
+            :description: Validates CRID-numbers
+            :class: validatecrid
+        ip:
+            :description: Validates IP addresses
+            :class: validateip
+        interface:
+            :description: Validates interfaces
+            :class: validateinterface
+        asn:
+            :description: Validates AS-numbers
+            :class: validateasn
+        none:
+            :description: No validation
+    testoptions:
+      default_sessions: 10
+      tcpwindowsize: 4194304
+      blocksize: 8192
+      duration:
+          be: 60
+          ef: 60
+    pairs: 
+    - remote: 127.0.0.1
+      name: localhost (development)
+      local: 198.18.0.2
+      client: 198.18.1.0/30
+      bb: 198.18.1.1
+      cpe: 198.18.1.2
+      dslbb: 198.19.1.1
+      dslcpe: 198.19.1.2
+    - remote: 127.0.0.1
+      name: localhost L3 (development)
+      local: 198.18.0.2
+      client: 198.18.1.0/30
+      bb: 198.18.1.1
+      cpe: 198.18.1.2
+      dslbb: 198.19.1.1
+      dslcpe: 198.19.1.2
+      l3: true
+test: *id0001

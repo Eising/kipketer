@@ -1,0 +1,26 @@
+= haml :'forms/nav'
+%table.stdtable
+  %tr
+    %th ID
+    %th Name
+    %th Backbone Template
+    %th CPE Template
+    %th View
+    %th Delete
+    - @forms.each do |form|
+      %tr
+        %td= form.id
+        %td
+          - if form.inconsistent
+            = img '/images/warning.png', alt: "Inconsistent form. Please update!"
+          #{form.name}
+        %td= form.backbone_template.name rescue "Invalid template"
+        %td= form.cpe_template.name rescue "Invalid template"
+        %td
+          %a(href="/forms/view/#{form.id}")
+            = img '/images/view.png', width: 24, height: 24
+        %td
+          %a(href="/forms/delete/#{form.id}" class="confirmation")
+            = img '/images/delete.png', width: 24, height: 24
+
+

@@ -1,0 +1,78 @@
+- if @embed
+  - divid = "embedform"
+- else
+  - divid = "configform"
+%div(id="#{divid}")
+  %h1 Configure Test
+  %form(action="/schedule" method="POST" id="configureform")
+    .formpart
+      %label CRID
+      %p= @crid
+      %input(type="hidden" name="crid" value="#{@crid}")
+      %label Customer
+      %p= @customer
+      %input(type="hidden" name="customer" value="#{@customer}")
+      %label Location
+      %p= @location
+      %input(type="hidden" name="location" value="#{@location}")
+      %label Speed
+      %p= @speed
+      %input(type="hidden" name="speed" value="#{@speed}")
+      %input(type="hidden" name="form_id" value="#{@form_id}")
+      - if @req
+        %h2 Old test data
+        %table.stdtable
+          %tr
+            %th Backbone Type
+            %td= @req.bbtype
+          %tr
+            %th Backbone Interface
+            %td= @req.bb_interface
+          %tr
+            %th Access Switch name
+            %td= @req.as_name
+          %tr
+            %th Access Switch interface
+            %td= @req.as_interface
+          %tr
+            %th CPE Management Address
+            %td #{IPAddr.new(@req.mgmt_cpe, Socket::AF_INET)}/#{@req.prefix_length}
+          %tr
+            %th Backbone Management Address
+            %td #{IPAddr.new(@req.mgmt_backbone, Socket::AF_INET)}/#{@req.prefix_length}
+          %tr
+            %th CPE Test Address
+            %td #{IPAddr.new(@req.test_addr, Socket::AF_INET)}/#{@req.prefix_length}
+          %tr
+            %th CPE AS Number
+            %td= @req.cpe_asn
+          %tr
+            %th IP Information
+            %td
+              %pre= @req.ipinfo
+          %tr
+            %th Test VLAN
+            %td= @req.vlan_test
+          %tr
+            %th Test VLAN (alternate)
+            %td= @req.vlan_test2
+          %tr
+            %th SVLAN (QinQ Outertag)
+            %td= @req.svlan
+          %tr
+            %th POI
+            %td= @req.poi
+
+
+      %input(type="hidden" name="deadline" value="#{@deadline}")
+      %h2 Config
+      - @defaults.each do |element, config|
+        %label= config["name"]
+        %br
+        = tag_to_form(element, config["value"], config[:klass])
+        %br
+        %br
+    .clear
+    - if @embed
+      = input 'hidden', 'embed', 'true'
+    %input(type="submit" id="submitbtn" name="submit")

@@ -1,0 +1,54 @@
+= haml :'templates/nav'
+#composeform
+  %h1 Add new template
+  %form(action="/templates/add" method="POST" id="composeformelement")
+    %h2 Template to configure test
+    %textarea(class="composearea" name="contents")= @template[:contents]
+    %h2 Template to deconfigure test
+    %textarea(class="composearea" name="contents_deconfigure")= @template[:contents_deconfigure]
+    .helptext
+      Input your template here. Use {{ }} around variables. When you submit, you are asked to define your variables as certain types. The following are supported:
+      %ul
+        %li CRID
+        %li Subnet
+        %li IP
+        %li VLAN
+        %li Interface
+        %li Null
+      The system supports auto-filling from backoffice. Use the variable names from Backoffice, prefixed by bo_, and __ instead of '.'
+      For example, bo_CPE__CPEIP. Refer to BackOffice for more information.
+      %br
+      In addtion, the following special variables exist:
+      %ul
+        %li {{testcpe}} - The CPE side of the test linknet
+        %li {{testbb}} - The Backbone side of the test linknet
+        %li {{pairlocal}} - The local address in the test subnet
+        %li {{pairremote}} - The remote address in the test subnet
+      If your template name includes the word L3POI, the pairs will automatically be filtered to only include L3POI test pairs
+    
+       
+    %label Name
+    %br
+    .formpart
+      %input(type="text" id="templatename" name="name" value="#{@template[:name]}" class="required")
+      %label Description
+      %br
+      %input(type="text" name="description" id="templatedescr" value="#{@template[:description]}" class="required")
+      %br
+      %label Type
+      %br
+      %select(name="type" id="typeselect" class="required")
+        - if @template[:type]
+          - if @template[:type] == "cpe"
+            %option(value="cpe" selected="selected") CPE
+            %option(value="backbone") Backbone
+          - else
+            %option(value="backbone" selected="selected") Backbone
+        - else
+          %option(value="") Select type
+          %option(value="cpe") CPE
+          %option(value="backbone") Backbone
+    %input(type="hidden" name="template_id" value="#{@template[:id]}")
+    %input(type="submit" id="submitbtn" name="submit")
+    .clear
+    

@@ -1,0 +1,31 @@
+= haml :'forms/nav'
+#configform
+  %table#templatedetails.stdtable
+    %tr
+      %td Name:
+      %td= @form.name
+    %tr
+      %td CPE Template:
+      %td= @form.cpe_template.name
+    %tr
+      %td Backbone Template:
+      %td= @form.backbone_template.name
+    %tr
+      %td(colspan="2") &nbsp;
+    %tr
+      %td(colspan="2")
+        Fields and defaults:
+      - fields = JSON.parse @form.defaults
+      - fields.each do |field, value|
+        %tr
+          %td(colspan="2")
+            %b= field
+        %tr
+          %td Name
+          %td= value["name"]
+        %tr
+          %td Default
+          %td= value["value"]
+      %td(colspan="2")
+        %a(href="/forms/update/#{@form.id}") Update form
+

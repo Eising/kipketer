@@ -1,0 +1,27 @@
+#embedform
+  %h1 Test details
+  %table.striped
+    %tr
+      %td CRID
+      %td= @test.crid
+    %tr
+      %td Customer
+      %td= @test.customer
+    %tr
+      %td Location
+      %td= @test.location
+    %tr
+      %td Speed
+      %td= @test.speed
+    %tr
+      %td(colspan="2")
+        %b Parameters
+    - @template_fields.each do |k,v|
+      %tr
+        %td= k
+        %td= v
+        
+
+        
+      
+

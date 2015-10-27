@@ -1,0 +1,23 @@
+= haml :'templates/nav'
+%table.stdtable
+  %thead#theader
+    %tr
+      %th ID
+      %th Name
+      %th Type
+      %th Description
+      %th View
+      %th Delete
+  %tbody#main
+    - @templates.each do |template|
+      %tr
+        %td= template.id
+        %td= template.name
+        %td= template.type
+        %td= template.description
+        %td
+          %a(href="/template/#{template.id}")
+            = img '/images/view.png', width: 24, height: 24
+        %td
+          %a(href="/template/delete/#{template.id}" class="confirmation")
+            = img '/images/delete.png', width: 24, height: 24
