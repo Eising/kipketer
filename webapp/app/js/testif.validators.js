@@ -25,7 +25,9 @@ $(function() {
 $(function() {
     $.validator.addMethod('CridChecker', function(value) {
         
-        var crid = "^N[A-Z]{2}-[0-9]{6}$";
+//        var crid = "^N[A-Z]{2}-[0-9]{6}$";
+//        Insert your own logic here
+        var crid = ".*";
         return value.match(crid);
     }, "Invalid CRID");
     

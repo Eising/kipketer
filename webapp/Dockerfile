@@ -16,7 +16,7 @@ ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 RUN service ntp start
 # Install thrulay
-RUN curl -O http://softlayer-ams.dl.sourceforge.net/project/thrulay-ng/thrulay-ng/0.6.2/thrulay-ng-0.6.2.tar.gz && tar zxvf thrulay-ng-0.6.2.tar.gz && cd thrulay-ng-0.6.2 && ./configure && make && make install 
+RUN curl -L -O http://downloads.sourceforge.net/project/thrulay-ng/thrulay-ng/0.6.2/thrulay-ng-0.6.2.tar.gz && tar zxvf thrulay-ng-0.6.2.tar.gz && cd thrulay-ng-0.6.2 && ./configure && make && make install 
 # Install owampd
 RUN cd && curl -O http://software.internet2.edu/sources/owamp/owamp-3.3.tar.gz && tar zxvf owamp-3.3.tar.gz && cd owamp-3.3 && ./configure && make && make install \
 && mkdir /etc/owamp \
