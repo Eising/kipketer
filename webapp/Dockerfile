@@ -1,11 +1,10 @@
-FROM ubuntu:latest
-MAINTAINER Gabriel Glachant <gglachant@gmail.com>
+FROM ruby:2.3
 
 ENV DEBIAN_FRONTEND noninteractive
 
 #RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN apt-get -qy update && apt-get -qy install apt-utils ca-certificates curl git-core sudo ruby ruby-dev libmysqlclient-dev ruby-libxml build-essential libssl-dev libsqlite3-dev ntp libfontconfig1 && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get -qy update && apt-get -qy install apt-utils ca-certificates curl git-core sudo ruby ruby-dev libmysqlclient-dev ruby-libxml build-essential libssl-dev libsqlite3-dev ntp libfontconfig1 locales && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
@@ -31,5 +30,6 @@ RUN gem install rake
 WORKDIR /opt/app
 ADD Gemfile /opt/app/Gemfile
 ADD Gemfile.lock /opt/app/Gemfile.lock
-RUN bundle install
 EXPOSE 5000
+
+CMD [ "bash" ]

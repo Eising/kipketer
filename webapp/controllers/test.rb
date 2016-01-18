@@ -416,21 +416,4 @@ class Hastighedstest < Sinatra::Base
         Results.create(:test_id => test_id, :test_type => "external", :results => { "path" => destination, "filename" => params[:file][:filename] }.to_json, :timestamp => Time.now)
         redirect to("/reports/configure/#{test_id}")
     end
-=begin
-# old upload routine
-    post '/test/upload' do
-        test_id = params[:test_id]
-        tempfile = Tempfile.new(test_id)
-        file = params[:file][:tempfile]
-        kit = PDFKit.new("#{request.base_url}/internal/reports/manual/#{test_id}", :page_size => 'A4', :print_media_type => true)
-        report = kit.to_pdf
-        pdf = CombinePDF.new
-        pdf << CombinePDF.parse(report)
-        pdf << CombinePDF.parse(File.read(file))
-        pdf.save(tempfile.path)
-        content_type 'application/pdf'
-        File.read(tempfile.path)
-    end
-=end
-
 end
