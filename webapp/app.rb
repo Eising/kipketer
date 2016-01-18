@@ -36,13 +36,16 @@ class Hastighedstest < Sinatra::Base
         css_compression :simple
     end
     config_file "etc/config.yml"
-    if ENV["RACK_ENV"] == "test"
-        DB = Sequel.connect("sqlite://db/test.db")
-    elsif ENV["RACK_ENV"] == "development"
-        DB = Sequel.connect("sqlite://db/development.db")
+
+    case ENV["RACK_ENV"]
+    when "test"
+      DB = Sequel.connect("sqlite://db/test.db")
+    when "development"
+      DB = Sequel.connect("sqlite://db/development.db")
     else
-        DB = Sequel.mysql2 settings.db, :user => settings.dbuser, :password => settings.dbpass, :host => settings.dbhost, :encoding => 'utf8'
+      DB = Sequel.connect("sqlite://db/production.db")
     end
+
     DB.extension(:pagination)
     set :views, settings.root + '/views'
 

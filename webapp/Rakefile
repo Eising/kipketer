@@ -5,12 +5,14 @@ namespace :db do
     require "yaml"
     Sequel.extension :migration
     config = YAML.load_file("etc/config.yml")
-    if ENV['RACK_ENV'] == "test"
-        dbstring = "sqlite://db/test.db"
-    elsif ENV['RACK_ENV'] == "development"
+    case ENV['RACK_ENV']
+
+    when "test"
+      dbstring = "sqlite://db/test.db"
+    when "development"
         dbstring = "sqlite://db/development.db"
     else
-        dbstring = "mysql2://#{config["production"]["dbuser"]}:#{config["production"]["dbpass"]}@#{config["production"]["dbhost"]}/#{config["production"]["db"]}"
+      dbstring = "sqlite://db/production.db"
     end
     db = Sequel.connect(dbstring)
     if args[:version]
